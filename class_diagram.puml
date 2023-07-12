@@ -1,0 +1,14 @@
+@startuml class_diagram
+' Class declarations '
+class Main
+class SolarPanel
+class Motor
+class xMotor
+class yMotor
+
+' Class relationships '
+SolarPanel ..|> Main
+xMotor --|> Motor
+yMotor --|> Motor
+Motor ..|> Main
+@enduml
