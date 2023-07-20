@@ -1,14 +1,50 @@
 @startuml class_diagram
 ' Class declarations '
 class Main
+class ARSP
+class Display
 class SolarPanel
 class Motor
-class xMotor
-class yMotor
 
 ' Class relationships '
-SolarPanel ..|> Main
-xMotor --|> Motor
-yMotor --|> Motor
-Motor ..|> Main
+ARSP ..|> Main : uses
+Motor --> ARSP : contains
+SolarPanel --> ARSP : contains
+Display --> ARSP : contains
+
+' Class functions '
+Main : +void setup()
+Main : +void loop()
+
+Display : +void printToScreen()
+
+SolarPanel : +float : getSolarIntensity()
+SolarPanel : +float : getRequiredXOffset()
+SolarPanel : +float : getRequiredYOffset()
+
+Motor : +float : getXPolarCoordinate()
+Motor : +float : getYPolarCoordinate()
+Motor : void : moveXPolarCoordinates()
+Motor : void : moveYPolarCoordinates()
+
+ARSP : +void track()
+ARSP : +bool maxSolarIntensity()
+ARSP : +void (Display) printCurrentPowerToDisplay()
+ARSP : +void (Display) printCurrentRotationToDisplay()
+
+' Class attributes '
+Main : -ARSP : arsp
+
+Display : +string currentOutput
+
+Motor : -float : xPolarCoordinate
+Motor : -float : yPolarCoordinate
+
+SolarPanel : -float : solarIntensity
+
+ARSP : -Motor : xMotor
+ARSP : -Motor : yMotor
+ARSP : -SolarPanel : panel
+ARSP : -Display : display
+
 @enduml

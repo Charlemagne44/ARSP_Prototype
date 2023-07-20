@@ -1,0 +1,25 @@
+@startuml
+'flow of the setup then main loop'
+start
+: setup() ;
+: initialize asrp ;
+: initialize asrp motors ;
+: initialize asrp panel ;
+: end setup() ;
+
+' loop() '
+repeat : loop() ;
+if (ARSP - maxSolarIntensity()) then (false)
+    : ARSP - track() ;
+    : Panel - getRequiredXOffset() ;
+    : Panel - getRequiredYOffset() ;
+    : Motor - moveXPolarCoordinates() ;
+    : Motor - moveYPolarCoordinates() ;
+else (true)
+endif
+: print current power input to display ;
+: print current orientation to display ;
+repeat while (loop())
+
+stop
+@enduml
