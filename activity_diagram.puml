@@ -9,10 +9,12 @@ start
 
 ' loop() '
 repeat : loop() ;
+: PhotoResistor - getLightIntensity() ;
 if (ARSP - maxSolarIntensity()) then (false)
     : ARSP - track() ;
     : Panel - getRequiredXOffset() ;
     : Panel - getRequiredYOffset() ;
+    : ARSP - getBrightnessDirection() ;
     : Motor - moveXPolarCoordinates() ;
     : Motor - moveYPolarCoordinates() ;
 else (true)
