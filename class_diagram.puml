@@ -5,14 +5,16 @@ class ARSP
 class Display
 class SolarPanel
 class Motor
+class PhotoResistor
 
 ' Class relationships '
 ARSP ..|> Main : uses
 Motor --> ARSP : contains
 SolarPanel --> ARSP : contains
 Display --> ARSP : contains
+PhotoResistor --> ARSP : contains
 
-' Class functions '
+' Class functions - constructors not included'
 Main : +void setup()
 Main : +void loop()
 
@@ -21,6 +23,9 @@ Display : +void printToScreen()
 SolarPanel : +float : getSolarIntensity()
 SolarPanel : +float : getRequiredXOffset()
 SolarPanel : +float : getRequiredYOffset()
+
+PhotoResistor : +int : getVoltageAnalogVal()
+PhotoResistor : +int : getLightIntensity()
 
 Motor : +float : getXPolarCoordinate()
 Motor : +float : getYPolarCoordinate()
@@ -31,6 +36,7 @@ ARSP : +void track()
 ARSP : +bool maxSolarIntensity()
 ARSP : +void (Display) printCurrentPowerToDisplay()
 ARSP : +void (Display) printCurrentRotationToDisplay()
+ARSP : +string (PhotoResistor) getBrightestDirection()
 
 ' Class attributes '
 Main : -ARSP : arsp
@@ -39,6 +45,8 @@ Display : +string currentOutput
 
 Motor : -float : xPolarCoordinate
 Motor : -float : yPolarCoordinate
+
+PhotoResistor : -int : pin
 
 SolarPanel : -float : solarIntensity
 
