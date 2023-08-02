@@ -1,8 +1,7 @@
 #include "PhotoResistor.h"
+#include "Panel.h"
 
-#define LOOP_INTERVAL 3000
-
-PhotoResistor photoResistor(A0);
+#define LOOP_INTERVAL 2000
 
 void setup() {
     Serial.begin(9600);
